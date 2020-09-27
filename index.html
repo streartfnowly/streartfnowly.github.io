@@ -103,9 +103,9 @@
 <ul>
 <li>new listing的预测分数相对期望值偏低。</li>
 <li>cold start的一般解决办法是EE。</li>
-<li>new listing相对old，区别在于用户的历史行为特征为空。listing的属性特征是有的。</li>
+<li>new listing相对old，区别在于listing的用户历史行为特征为空，例如listing被预定的次数。listing的属性特征是有的。</li>
 <li>旧方法：使用new listing地理周边的相似listing的历史行为特征的平均值作为new listing的特征默认值。 </li>
-<li>新方法：预测用户的历史特征，使用随机选择position前100的listing（用户与之充分交互动作），使用真正的特征预测rank，以及使用预测的特征预测rank，计算MSE。从而得到预测的特征。 线上book效果：+0.38%，新订单效果+14%。</li>
+<li>新方法：预测用户的历史特征，使用随机选择position前100的listing（用户与之充分交互动作），使用真正的特征(我觉得包括属性特征和行为特征)预测DR，以及使用原来的属性特征+预测的行为特征预测DR，计算MSE。从而得到预测的行为特征。 DR=discount rank=log(2.0)/log(2.0+R_real) 。 线上book效果：+0.38%，新订单效果+14%。</li>
 </ul>
 <p>3.3 position bias:</p>
 <ul>
@@ -115,7 +115,7 @@
 </li>
 <li><p>一般建模方法：建模一个rank模型，使用rank模型得到的rank k来再建模一个bias模型。</p>
 </li>
-<li><p>文章使用方法：不单独建模bias模型。在rank模型直输入position feature，使用一个控制变量beta。</p>
+<li><p>文章使用方法：不单独建模bias模型。在rank模型输入position feature，使用droupout_rate来控制position_feature=0的概率。</p>
 </li>
 <li><p>由于，相对不加入position feature的模型，加入position feature训练的模型(预测时position=0)，效果更差。因此说明，position feature会减弱query和listing的相关性。 为了要最大限度减少这种影响，所以加入dropout。dropout相当于在训练中，只有部分样本才有position影响，其他没有。</p>
 </li>
@@ -126,7 +126,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/27/2020-Improving-Deep-Learning-For-Airbnb-Search/" data-id="ckfknrhm60001fjwp1fftd6k6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/27/2020-Improving-Deep-Learning-For-Airbnb-Search/" data-id="ckfkvmgom0000zxwphzmp9tfl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/position-bias/" rel="tag">position bias</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%B7%E5%90%AF%E5%8A%A8/" rel="tag">冷启动</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag">数据分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84/" rel="tag">模型结构</a></li></ul>
@@ -170,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/23/Representation-Learning-Assisted-Click-Through-Rate-Prediction2019/" data-id="ckfknrhm00000fjwp1bkvg4m9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/23/Representation-Learning-Assisted-Click-Through-Rate-Prediction2019/" data-id="ckfkvmgos0001zxwpa6or8kc0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTR%E5%BB%BA%E6%A8%A1/" rel="tag">CTR建模</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0/" rel="tag">多任务学习</a></li></ul>
