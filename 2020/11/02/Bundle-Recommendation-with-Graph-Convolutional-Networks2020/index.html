@@ -7,18 +7,18 @@
   
   <title>Bundle Recommendation with Graph Convolutional Networks2020 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="item leval propagation: bundle level propagation : 总结 解决了什么问题?Bundle Recommendation。原有的方法都是user-item和user-bundle分别建模，通过共享参数或者多任务学习来分别学习。但是这样并不能model item-bundle之间的从属关系。文章使用了GCN的方法，通过建立user-item-bundl">
+  <meta name="description" content="item leval propagation: bundle level propagation : 总结1. 解决了什么问题?Bundle Recommendation。原有的方法都是user-item和user-bundle分别建模，通过共享参数或者多任务学习来分别学习。但是这样并不能model item-bundle之间的从属关系。文章使用了GCN的方法，通过建立user-item-bun">
 <meta name="keywords" content="推荐系统,图网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bundle Recommendation with Graph Convolutional Networks2020">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;11&#x2F;02&#x2F;Bundle-Recommendation-with-Graph-Convolutional-Networks2020&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="item leval propagation: bundle level propagation : 总结 解决了什么问题?Bundle Recommendation。原有的方法都是user-item和user-bundle分别建模，通过共享参数或者多任务学习来分别学习。但是这样并不能model item-bundle之间的从属关系。文章使用了GCN的方法，通过建立user-item-bundl">
+<meta property="og:description" content="item leval propagation: bundle level propagation : 总结1. 解决了什么问题?Bundle Recommendation。原有的方法都是user-item和user-bundle分别建模，通过共享参数或者多任务学习来分别学习。但是这样并不能model item-bundle之间的从属关系。文章使用了GCN的方法，通过建立user-item-bun">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;3.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;4.png">
-<meta property="og:updated_time" content="2020-11-05T13:39:43.000Z">
+<meta property="og:updated_time" content="2020-11-05T13:45:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2.png">
   
@@ -96,16 +96,13 @@
         <p><img src="/images/2.png" alt="modelArchitecture"></p>
 <p>item leval propagation:<br><img src="/images/3.png" alt="modelArchitecture"></p>
 <p>bundle level propagation :<br><img src="/images/4.png" alt="modelArchitecture"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>解决了什么问题?<br>Bundle Recommendation。原有的方法都是user-item和user-bundle分别建模，通过共享参数或者多任务学习来分别学习。但是这样并不能model item-bundle之间的从属关系。<br>文章使用了GCN的方法，通过建立user-item-bundle三种异质节点建立异质网络，来学习item-bundle之间的关系。</li>
-<li>文章的创新点</li>
-</ul>
-<p>1.使用了two level propagation：<br> – item level: 建立user-item，item-bundle的网络，学习到item到bundle的信息。<br> – bundle level: 建立user-bundle, bundle-item-bundle的网络，学习到bundle-bundle之间的关系。其中bundle2bundle,使用了bundle之间的相似度作为weight作为学习参数。<br>2.使用了hard negsample。文章使用的是pairwise loss，进行了两个训练，第一次训练收敛后，再进行80%是hard negsample的再训练。</p>
-
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="1-解决了什么问题"><a href="#1-解决了什么问题" class="headerlink" title="1. 解决了什么问题?"></a>1. 解决了什么问题?</h3><p>Bundle Recommendation。原有的方法都是user-item和user-bundle分别建模，通过共享参数或者多任务学习来分别学习。但是这样并不能model item-bundle之间的从属关系。<br>文章使用了GCN的方法，通过建立user-item-bundle三种异质节点建立异质网络，来学习item-bundle之间的关系。</p>
+<h3 id="2-文章的创新点"><a href="#2-文章的创新点" class="headerlink" title="2. 文章的创新点"></a>2. 文章的创新点</h3><h4 id="2-1-使用了two-level-propagation："><a href="#2-1-使用了two-level-propagation：" class="headerlink" title="2.1.使用了two level propagation："></a>2.1.使用了two level propagation：</h4><pre><code>item level: 建立user-item，item-bundle的网络，学习到item到bundle的信息。 
+bundle level: 建立user-bundle, bundle-item-bundle的网络，学习到bundle-bundle之间的关系。其中bundle2bundle,使用了bundle之间的相似度作为weight作为学习参数。</code></pre><h4 id="2-2-使用了hard-negsample。"><a href="#2-2-使用了hard-negsample。" class="headerlink" title="2.2.使用了hard negsample。"></a>2.2.使用了hard negsample。</h4><pre><code>文章使用的是pairwise loss，进行了两个训练，第一次训练收敛后，再进行80%是hard negsample的再训练。</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/11/02/Bundle-Recommendation-with-Graph-Convolutional-Networks2020/" data-id="ckh4vpqki0004aawp73b4buxs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/11/02/Bundle-Recommendation-with-Graph-Convolutional-Networks2020/" data-id="ckh4vucjp0000fiwp83y2h7n9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E7%BD%91%E7%BB%9C/" rel="tag">图网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">推荐系统</a></li></ul>
