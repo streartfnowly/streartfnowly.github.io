@@ -7,15 +7,15 @@
   
   <title>Learning to Build User-tag Profile in Recommendation System2020 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="总结 解决了什么问题？">
+  <meta name="description" content="总结解决了什么问题？预测用户的标签，以用在后续的recall和rank。  创新点 使用了multi-head attention ： 文章使用了两个multi-head attention分别对应两个共享的query vector，并且用了两层的multi-head attention分别做特征域内和域间的interaction。最后的输出为两个multi-head attention的输出向量">
 <meta name="keywords" content="用户标签,画像">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Learning to Build User-tag Profile in Recommendation System2020">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;11&#x2F;05&#x2F;Learning-to-Build-User-tag-Profile-in-Recommendation-System2020&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="总结 解决了什么问题？">
+<meta property="og:description" content="总结解决了什么问题？预测用户的标签，以用在后续的recall和rank。  创新点 使用了multi-head attention ： 文章使用了两个multi-head attention分别对应两个共享的query vector，并且用了两层的multi-head attention分别做特征域内和域间的interaction。最后的输出为两个multi-head attention的输出向量">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-11-05T13:41:38.000Z">
+<meta property="og:updated_time" content="2020-11-05T13:59:37.000Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -89,14 +89,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><h2 id="解决了什么问题？"><a href="#解决了什么问题？" class="headerlink" title="解决了什么问题？ "></a>解决了什么问题？ </h2></li>
-</ul>
+        <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="解决了什么问题？"><a href="#解决了什么问题？" class="headerlink" title="解决了什么问题？"></a>解决了什么问题？</h3><p>预测用户的标签，以用在后续的recall和rank。 </p>
+<h3 id="创新点"><a href="#创新点" class="headerlink" title="创新点"></a>创新点</h3><ol>
+<li>使用了multi-head attention ：<br> 文章使用了两个multi-head attention分别对应两个共享的query vector，并且用了两层的multi-head attention分别做特征域内和域间的interaction。最后的输出为两个multi-head attention的输出向量的concat。</li>
+<li>使用了再embdding+dot 的cross layer：<br> 文章在Attention层后接了一个cross layer。这个cross层以attention层的E维向量作为输入，其本身向量作为cross层的线性输出，向量每个维度再映射成C维向量，每个维度的embedding和原来的scalar值的乘积作为该维度的值，两两做点积，得到E(E-1)/2长度的向量，这个向量作为cross层的非线性输出。</li>
+<li>使用joint loss<br> 用户点击了某篇文章，文章有多个tag。一般的训练样本处理方法，可以将每个tag都拆散认为是一个正样本。 但是论文认为，这样不符合用户真正的想法。用户点击某篇文章，其实不是对文章的所有tag都感兴趣，而是对某个或者一两个tag感兴趣。<br> 因此，论文里用户点击文章的正样本，其预测值是 用户向量（最后一层fc层的输出向量）与每个tag embedding的点积和。 </li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/11/05/Learning-to-Build-User-tag-Profile-in-Recommendation-System2020/" data-id="ckh4vucjy0004fiwp654b7b1r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/11/05/Learning-to-Build-User-tag-Profile-in-Recommendation-System2020/" data-id="ckh4wcqq60000w6wphcfr5i18" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%A8%E6%88%B7%E6%A0%87%E7%AD%BE/" rel="tag">用户标签</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%BB%E5%83%8F/" rel="tag">画像</a></li></ul>
